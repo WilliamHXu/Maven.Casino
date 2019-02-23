@@ -7,10 +7,11 @@ public class BlackJackGame {
     private String winLoseTie;
 
     public Integer wallet() {
+
         return null;
     }
 
-    public Card hit() {
+    public BlackjackCard hit() {
         return null;
     }
 
