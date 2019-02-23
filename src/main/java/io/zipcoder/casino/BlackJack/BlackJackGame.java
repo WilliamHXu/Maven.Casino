@@ -1,5 +1,7 @@
 package io.zipcoder.casino.BlackJack;
 
+import io.zipcoder.casino.utilities.Card;
+
 public class BlackJackGame {
     public Boolean isBlackJack;
     private Integer handValue;

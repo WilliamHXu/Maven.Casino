@@ -58,7 +58,5 @@ public final class Console {
         return getLongInput(prompt, args).intValue();
     }
 
-    public static class Player {
-    }
 }
 
