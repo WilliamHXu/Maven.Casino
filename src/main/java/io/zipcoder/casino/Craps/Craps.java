@@ -63,6 +63,19 @@ public class Craps {
             }
         }
 
+        if (isPassBet == true && passBet == 0) {
+            //add passLineAmount to playerWallet
+            //remove passLineAmount from houseWallet
+        } else if (isPassBet == true && passBet == 1) {
+            //remove passLineAmount from playerWallet
+            //add passLineAmount to houseWallet
+        } else if (isDontPassBet == true && dontPassBet == 0) {
+            //add passLineAmount to playerWallet
+            //remove passLineAmount from houseWallet
+        } else if (isDontPassBet == true && dontPassBet == 1) {
+            //remove passLineAmount from playerWallet
+            //add passLineAmount to houseWallet
+        }
 
 
         System.out.println("Betting time.  Enter 'Come' or 'Don't Come'");
@@ -90,11 +103,11 @@ public class Craps {
                 comeBet = 1;
                 dontComeBet = 0;
                 point = 0;
-            } else if ( pointRoll == 2 || pointRoll == 3) {
+            } else if (pointRoll == 2 || pointRoll == 3) {
                 comeBet = 1;
                 dontComeBet = 0;
                 point = 0;
-            } else if(pointRoll == 12) {
+            } else if (pointRoll == 12) {
                 comeBet = 1;
                 dontComeBet = 2;
                 point = 0;
@@ -106,7 +119,19 @@ public class Craps {
             }
         }
 
-
+        if (isComeBet == true && comeBet == 0) {
+            //add comeLineAmount to playerWallet
+            //remove comeLineAmount from houseWallet
+        } else if (isComeBet == true && comeBet == 1) {
+            //remove comeLineAmount from playerWallet
+            //add comeLineAmount to houseWallet
+        } else if (isDontComeBet == true && dontComeBet == 0) {
+            //add passLineAmount to playerWallet
+            //remove passLineAmount from houseWallet
+        } else if (isDontComeBet == true && dontComeBet == 1) {
+            //remove passLineAmount from playerWallet
+            //add passLineAmount to houseWallet
+        }
     }
 }
 
