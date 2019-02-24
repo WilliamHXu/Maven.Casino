@@ -365,9 +365,6 @@ public class GoFishGame {
 
 
 
-
-
-
     private void opponentTurnTrue() {
         incrementOpponentBook();
         decrementOpponentCards();
