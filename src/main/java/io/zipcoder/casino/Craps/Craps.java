@@ -6,6 +6,7 @@ import io.zipcoder.casino.utilities.Dice;
 
 import java.sql.SQLOutput;
 import java.util.Scanner;
+
 import static java.lang.System.in;
 
 
@@ -56,6 +57,7 @@ public class Craps {
 
 
             System.out.println("Press [Enter] to roll the dice");
+            scan.nextLine();
             scan.nextLine();
 
             comeOutRoll = crapsDice.throwAndSum();
@@ -118,14 +120,16 @@ public class Craps {
             }
             System.out.println("Enter bet amount: ");
             comeLineAmount = scan.nextInt();
+        }
 
+        while (point != 0) {
+            //Additional Bets will go here
             System.out.println("Press [Enter] to roll the dice");
             scan.nextLine();
 
+
             pointRoll = crapsDice.throwAndSum();
             System.out.println("You rolled: " + pointRoll + ".");
-        }
-        while (point != 0) {
 
 
             if (pointRoll == point) {
@@ -145,19 +149,17 @@ public class Craps {
                 dontComeBet = 1;
                 point = 0;
                 System.out.println("Keep rolling");
-                break;
             } else if (pointRoll == 12) {
                 comeBet = 2;
                 dontComeBet = 3;
                 System.out.println("Keep rolling");
-                break;
             } else if (pointRoll == 11) {
                 comeBet = 1;
                 dontComeBet = 2;
                 System.out.println("Keep rolling");
-                break;
             } else if (pointRoll != point && (pointRoll == 4 || pointRoll == 5 || pointRoll == 6 || pointRoll == 8 || pointRoll == 9 || pointRoll == 10)) {
                 System.out.println("Keep rolling");
+            } else {
                 break;
             }
 
@@ -177,6 +179,6 @@ public class Craps {
             //add comeLineAmount to houseWallet
         }
     }
-    }
+}
 
 
