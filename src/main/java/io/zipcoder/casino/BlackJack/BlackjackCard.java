@@ -1,6 +1,6 @@
 package io.zipcoder.casino.BlackJack;
 
-class BlackJackCard {
+public class BlackJackCard {
 
 
 
@@ -13,9 +13,9 @@ class BlackJackCard {
     public CardNumbers cardNumber;
 
     // card constructor aSuit is the suit of card aNumber is the number of the card
-    public  BlackJackCard(Suit aSuit, CardNumbers aNumber){
-        this.cardSuit=  aSuit;
-        this.cardNumber=aNumber;
+    public  BlackJackCard(Suit Suit, CardNumbers Number){
+        this.cardSuit=  Suit;
+        this.cardNumber= Number;
 
 
 
