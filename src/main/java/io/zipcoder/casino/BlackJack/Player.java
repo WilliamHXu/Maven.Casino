@@ -32,7 +32,7 @@ public class Player {
         public boolean  addCard(BlackJackCard aCard){
 
 
-            // print an error if we already have the max number of cards
+
 
             if(this.numCards==10){
                 System.out.printf("%s's hand already has 10 cards; " + "cannot add another \n", this.name);
@@ -52,7 +52,7 @@ public class Player {
             //calc each cards contribution to the hand sum
             for (int card = 0; card <this.numCards ; card++) {
                 //get the number of the current card
-                cardNumber = this.hand[card].getCardNumber();
+                //cardNumber = this.hand[card].getCardNumber();
 
                 if(cardNumber ==1 ){  // Ace
                     numAces++;

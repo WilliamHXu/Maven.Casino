@@ -8,7 +8,7 @@ public class BlackJackGameRunner {
 
     public class BlackjackGameRunner {
 
-        public static void main(String[] args){
+        public  void main(String[] args){
             // initiate the eyes from our ole friend Mr. Scanner named sc
             Scanner sc = new Scanner(System.in);
             Deck theDeck = new Deck();
