@@ -8,7 +8,8 @@ public class BlackJackPlayer {
     public void stand() {
     }
 
-    public Boolean bust() {
+    public Boolean bust()
+    {
         return null;
     }
 
