@@ -75,13 +75,13 @@ public class Player {
 
             return handSum;
         }
-        //print cards in players hand-> param-> showFirstCard whether the first card is hidden or not
+        //print cards in players hand-> param-> showFirstCard whether the first card is hidden
         public void printHand(boolean showFirstCard){
             System.out.printf("%s's cards : \n", this.name);
             for (int card = 0; card < this.numCards ; card++)
 
                 if (card == 0 && !showFirstCard) {
-                    System.out.println("  [hidden]");
+                    System.out.println(" [hidden]");
                 } else {
                     System.out.printf("  %s\n", this.hand[card].toString());
                 }
@@ -91,4 +91,4 @@ public class Player {
     }
 
 
-}
+

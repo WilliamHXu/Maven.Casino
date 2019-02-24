@@ -9,7 +9,7 @@ class BlackJackCard {
     //one of the 4 suits for this card
     public  Suit cardSuit;
 
-    // the number of this card where ace is 1 and face cards are 10
+
     public CardNumbers cardNumber;
 
     // card constructor aSuit is the suit of card aNumber is the number of the card
