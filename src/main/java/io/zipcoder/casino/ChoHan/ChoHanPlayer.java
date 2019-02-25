@@ -1,12 +1,14 @@
 package io.zipcoder.casino.ChoHan;
 
+import io.zipcoder.casino.Interfaces.GamblingPlayer;
 import io.zipcoder.casino.utilities.Player;
 
 import java.util.*;
 
-public class ChoHanPlayer {
+public class ChoHanPlayer implements GamblingPlayer {
     /** class objects */
     private Player playerObj;
+    private ChoHanGame choHanGameObj;
 
     /** instance variables */
     private ArrayList<Player> playerList = new ArrayList<Player>();
@@ -15,7 +17,7 @@ public class ChoHanPlayer {
     private Integer playerGuessCH;
     private String playerNameCH;
     private Integer walletBalanceCH;
-    public Integer netGainLossPlayerCH;
+    private Integer netGainLossPlayerCH;
 
     /**Nullary constructor*/
     public ChoHanPlayer()
@@ -73,14 +75,16 @@ public class ChoHanPlayer {
         return playerGuessCH;
     }
 
-    public Integer getPlayerGuess(ChoHanPlayer player)
-    {
-       return player.playerGuessCH;
-    }
-
+    /** return each player bet amount */
     public Integer getEachPlayerBet(String playerName)
     {
-        return 0;
+        return choHanGameObj.getPlayerBetList().get(playerName);
+    }
+
+    /** return each player guess for the game */
+    public Integer getEachPlayerGuess(String playerName)
+    {
+        return choHanGameObj.getPlayerGuessList().get(playerName);
     }
 
     /** return the list winner player names list*/
@@ -113,7 +117,6 @@ public class ChoHanPlayer {
         return losersList;
     }
 
-
     /** get method to return ChoHan eligible players */
     public ArrayList<ChoHanPlayer> getEligiblePlayerListCH() {
         return this.eligiblePlayerListCH;
@@ -124,20 +127,30 @@ public class ChoHanPlayer {
         return this.playerObj.getWallet();
     }
 
-    /** set method to assign ChoHan player wallet balance */
-    public void setWalletBalanceChoHanPlayer(ArrayList<String> winnerList, Integer gameBetAmt)
+    /** update CH player wallet, playerwallet and update netgainloss with the winning amount */
+    public void setPlayerWalletBalance(String playerName, Integer walletChangeAmt)
     {
-        for (String winner : winnerList)
-        {
-
-
-        }
-
+        this.playerObj.updateWallet(walletChangeAmt);
+        this.setWalletBalanceCH(walletChangeAmt);
     }
 
-//  public Integer updatePlayerWallet() {
-//        return null;
-//    }
+    public void setWalletBalanceCH(Integer walletChangeAmt) {
+        this.walletBalanceCH = walletChangeAmt;
+    }
+
+    public Integer getNetGainLossPlayerCH() {
+        return this.playerObj.getPlayerNetGainLoss();
+    }
+
+    public void setNetGainLossPlayerCH(Integer netGainLossPlayerCH) {
+        this.netGainLossPlayerCH += netGainLossPlayerCH;
+        playerObj.updatePlayerNetGainLoss(netGainLossPlayerCH);
+    }
+
+    public void bet(Integer amount)
+    {
+
+    }
 
     public String getPlayerNameCH() {
         return playerNameCH;

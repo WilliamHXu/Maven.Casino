@@ -26,4 +26,14 @@ public class Casino {
     Integer getNumberOfPlayers() {
         return 0;
     }
+
+    public Integer getHouseBalance()
+    {
+        return houseBalance;
+    }
+
+    public void setHouseBalance(Integer balance)
+    {
+        houseBalance = balance;
+    }
 }
