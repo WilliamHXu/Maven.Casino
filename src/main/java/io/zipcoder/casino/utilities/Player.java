@@ -18,6 +18,10 @@ public class Player {
         this(playerName, 10000);
     }
 
+    public Player(){
+        this("", 10000);
+    }
+
     // Methods
 
     /**
