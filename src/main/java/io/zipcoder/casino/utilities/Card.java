@@ -20,7 +20,23 @@ public class Card {
      */
 
     public String toString() {
-        return "" + suit + value;
+        String valueString;
+        if (this.value.equals(1)){
+            valueString = "A";
+        }
+        else if (this.value.equals(11)){
+            valueString = "J";
+        }
+        else if (this.value.equals(12)){
+            valueString = "Q";
+        }
+        else if (this.value.equals(13)){
+            valueString = "K";
+        }
+        else {
+            valueString = value.toString();
+        }
+        return "" + valueString + suit;
     }
 
     /**
