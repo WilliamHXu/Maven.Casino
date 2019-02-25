@@ -23,7 +23,8 @@ public class BlackJackGame implements Game, GamblingGame, CardGame {
 
     public BlackJackGame(Player player) {
         this.player = new BlackJackPlayer(player);
-        this, dealer = new BlackJackPlayer(new Player("Dealer", 9999999999, 0));
+        Player dealerPlayer = new Player("Dealer", 99999999);
+        this.dealer = new BlackJackPlayer(dealerPlayer);
         this.deck = new Deck();
         this.deck.shuffle();
     }
@@ -93,8 +94,8 @@ public class BlackJackGame implements Game, GamblingGame, CardGame {
 
         // Print the final hands
 
-        console.println("Dealer's Final Hand: %s" dealer.getHandString(true));
-        console.println("Player's Final Hand: %s" player.getHandString(true));
+        console.println("Dealer's Final Hand: %s", dealer.getHandString(true));
+        console.println("Player's Final Hand: %s", player.getHandString(true));
 
         int playerSum = player.getHandSum();
         int dealerSum = dealer.getHandSum();
@@ -102,7 +103,12 @@ public class BlackJackGame implements Game, GamblingGame, CardGame {
         // Determine Winner
         if(playerSum > dealerSum && playerSum <= 21 || dealerSum){
             //Player Wins
-
+            player.updateWallet(totalMoney*2);
+            console.println("Player Wins %d Dollars", totalMoney*2);
+        }
+        else {
+            dealer.updateWallet(totalMoney);
+            console.println("Dealer Wins");
         }
 
     }
