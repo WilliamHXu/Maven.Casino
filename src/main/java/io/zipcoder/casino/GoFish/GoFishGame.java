@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class GoFishGame {
-    
+
 
 
     private ArrayList<Player> playerList;
@@ -23,6 +23,7 @@ public class GoFishGame {
     private Card[] opponentBookCheck;
 
     private HashMap<String, Integer> allRanks;
+    
 
     private boolean endGameCheck;
 
