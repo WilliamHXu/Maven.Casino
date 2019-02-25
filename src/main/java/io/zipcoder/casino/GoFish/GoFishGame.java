@@ -34,7 +34,7 @@ public class GoFishGame {
     private int turnOrder;
 
 
-    public GoFishGame(ArrayList<Player> playerList) {
+    public GoFishGame() {
         this.playerList = playerList;
 
         playerBookCheck = new Card[13];
