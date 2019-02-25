@@ -58,11 +58,13 @@ public class Hand {
         }
     }
 
+
     /**
      * Removes all cards on a certain suit from the hand and returns in an ArrayList
      * @param suit
      * @return
      */
+    /*
 
     public ArrayList<Card> playAllCards(String suit) {
         ArrayList<Card> playedCards = new ArrayList<Card>();
@@ -74,6 +76,7 @@ public class Hand {
         }
         return playedCards;
     }
+    */
 
     /**
      * Removes all cards on a certain value from the hand and returns in an ArrayList
