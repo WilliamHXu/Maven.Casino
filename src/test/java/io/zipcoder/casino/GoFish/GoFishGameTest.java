@@ -89,6 +89,7 @@ public class GoFishGameTest {
     Assert.assertEquals(expTotalBooks, actCardCount);
     }
 
-
+    @Test
+    public void testSetOpponentBookTrue1(){}
 
 }

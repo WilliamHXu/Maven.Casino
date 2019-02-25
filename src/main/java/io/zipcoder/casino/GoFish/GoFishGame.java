@@ -23,7 +23,7 @@ public class GoFishGame {
     private Card[] opponentBookCheck;
 
     private HashMap<String, Integer> allRanks;
-    
+
 
     private boolean endGameCheck;
 
