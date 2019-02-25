@@ -4,7 +4,6 @@ import io.zipcoder.casino.Interfaces.GamblingGame;
 import io.zipcoder.casino.Interfaces.Game;
 import io.zipcoder.casino.utilities.Dice;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 import static java.lang.System.in;
@@ -120,12 +119,15 @@ public class Craps {
             }
             System.out.println("Enter bet amount: ");
             comeLineAmount = scan.nextInt();
+
+            scan.nextLine();
         }
 
         while (point != 0) {
             //Additional Bets will go here
             System.out.println("Press [Enter] to roll the dice");
             scan.nextLine();
+
 
 
             pointRoll = crapsDice.throwAndSum();
@@ -147,16 +149,15 @@ public class Craps {
             } else if (pointRoll == 2 || pointRoll == 3) {
                 comeBet = 2;
                 dontComeBet = 1;
-                point = 0;
-                System.out.println("Keep rolling");
+                System.out.println("'Come' loses, 'Don't Come' wins. Keep rolling");
             } else if (pointRoll == 12) {
                 comeBet = 2;
                 dontComeBet = 3;
-                System.out.println("Keep rolling");
+                System.out.println("'Come' loses, 'Don't Come' pushses. Keep rolling");
             } else if (pointRoll == 11) {
                 comeBet = 1;
                 dontComeBet = 2;
-                System.out.println("Keep rolling");
+                System.out.println("'Come' wins, 'Don't Come' loses. Keep rolling");
             } else if (pointRoll != point && (pointRoll == 4 || pointRoll == 5 || pointRoll == 6 || pointRoll == 8 || pointRoll == 9 || pointRoll == 10)) {
                 System.out.println("Keep rolling");
             } else {
