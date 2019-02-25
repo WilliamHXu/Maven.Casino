@@ -1,17 +1,15 @@
 package io.zipcoder.casino;
 
 
-import io.zipcoder.casino.BlackJack.BlackJackGame;
-import io.zipcoder.casino.ChoHan.ChoHanGame;
-import io.zipcoder.casino.Craps.CrapsGame;
-import io.zipcoder.casino.GoFish.GoFishGame;
 import io.zipcoder.casino.Interfaces.Game;
 import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Player;
 
+import java.util.ArrayList;
+
 public class Casino {
-    public java.util.ArrayList playerList;
-    public Integer keepPlaying;
+    public ArrayList<Player> playerList;
+    public boolean exitFlag = false;
     public Game currentGame;
     private Integer houseBalance;
     Console console = new Console(System.in, System.out);
@@ -30,12 +28,11 @@ public class Casino {
         // Welcome Players
         welcomePlayers();
         // While Loop This
-        boolean exitFlag = false;
         while (!exitFlag){
             // Get Next Action
             Integer nextAction = getNextAction();
             // Check for Exit
-            if(nextAction = 8){
+            if(nextAction == 8){
                 exitFlag = true;
             }
             // Perform the next action
@@ -44,44 +41,44 @@ public class Casino {
     }
 
     private void performNextAction(Integer nextAction) {
-        if(nextAction.equals(1)){
-            // Start GoFish
-            Game goFish = new GoFishGame(playerList);
-            goFish.start();
-        }
-        else if(nextAction.equals(2)){
-            // Start BlackJack
-            Game blackJack = new BlackJackGame(playerList);
-            blackJack.start();
-            // End sequence updates
-
-        }
-        else if(nextAction.equals(3)){
-            // Start Craps
-            Game craps = new CrapsGame(playerList);
-            craps.start();
-            // End sequence updates
-
-        }
-        else if(nextAction.equals(4)){
-            // Start ChoHan
-            Game choHan = new ChoHanGame(playerList);
-            choHan.start();
-            // End sequence updates
-
-        }
-        else if(nextAction.equals(5)){
-            goToATM();
-        }
-        else if(nextAction.equals(6)){
-            checkHouse();
-        }
-        else if(nextAction.equals(7)){
-            addPlayer();
-        }
-        else{
-            console.println("Either enter a valid option or get off the floor.");
-        }
+//        if(nextAction.equals(1)){
+//            // Start GoFish
+//            Game goFish = new GoFishGame(playerList);
+//            goFish.start();
+//        }
+//        else if(nextAction.equals(2)){
+//            // Start BlackJack
+//            Game blackJack = new BlackJackGame(playerList);
+//            blackJack.start();
+//            // End sequence updates
+//
+//        }
+//        else if(nextAction.equals(3)){
+//            // Start Craps
+//            Game craps = new CrapsGame(playerList);
+//            craps.start();
+//            // End sequence updates
+//
+//        }
+//        else if(nextAction.equals(4)){
+//            // Start ChoHan
+//            Game choHan = new ChoHanGame(playerList);
+//            choHan.start();
+//            // End sequence updates
+//
+//        }
+//        else if(nextAction.equals(5)){
+//            goToATM();
+//        }
+//        else if(nextAction.equals(6)){
+//            checkHouse();
+//        }
+//        else if(nextAction.equals(7)){
+//            addPlayer();
+//        }
+//        else{
+//            console.println("Either enter a valid option or get off the floor.");
+//        }
     }
 
     private void checkHouse() {
@@ -105,7 +102,7 @@ public class Casino {
             goToATM();
         }
         else {
-            "Thank you for your business!";
+            console.println("Thank you for your business!");
         }
     }
 
