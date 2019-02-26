@@ -17,7 +17,7 @@ public class Hand {
     }
 
     public Hand(){
-        this(new ArrayList<Card>());
+        this(new ArrayList<>());
     }
 
     // Methods
@@ -29,7 +29,8 @@ public class Hand {
     public String displayHand() {
         String handString = "";
         for (Card card : handList){
-            handString += card.toString() + " ";
+            String s = card.toString() + " ";;
+            handString += s;
         }
         return handString;
     }
@@ -109,7 +110,7 @@ public class Hand {
      */
 
     public void addCardToHand(Card card) {
-        this.handList.add(card);
+        handList.add(card);
     }
 
     /**
@@ -121,4 +122,35 @@ public class Hand {
     public Boolean contains(Card card) {
         return this.handList.contains(card);
     }
+
+
+    public int getHandSum(){
+
+        int handSum = 0;
+        int numAces = 0;
+        ArrayList<Card> handList = getHandList();
+        // Calculate each card's contribution to handSum
+        for (Card card : handList){
+            // Check for Aces
+            if(card.getValue().equals(1)){
+                numAces++;
+                handSum += 11;
+            }
+            // Check for Faces
+            else if(card.getValue().equals(11) || card.getValue().equals(12) || card.getValue().equals(13)) {
+                handSum += 10;
+            }
+            // Increment All Others
+            else {
+                handSum += card.getValue();
+            }
+        }
+        // Deal with Aces
+        while (handSum > 21 && numAces > 0){
+            handSum -= 10;
+            numAces--;
+        }
+        return handSum;
+    }
+
 }

@@ -18,7 +18,7 @@ public class CasinoTest {
     }
 
     public Console getConsoleWithBufferedInputAndOutput(String input, ByteArrayOutputStream baos){
-        Console console = new Console();
+      return null;
     }
 
 }

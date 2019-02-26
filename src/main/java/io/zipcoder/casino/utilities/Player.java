@@ -18,7 +18,8 @@ public class Player {
         this(playerName, 10000);
     }
 
-    public Player(){
+    public Player()
+    {
         this("", 10000);
     }
 
@@ -39,7 +40,10 @@ public class Player {
      */
 
     public void updateWallet(Integer walletGainLoss) {
+
         this.walletBalance += walletGainLoss;
+
+
         updatePlayerNetGainLoss(walletGainLoss);
     }
 
@@ -68,7 +72,10 @@ public class Player {
      */
 
     public void updatePlayerNetGainLoss(Integer netGainLoss) {
+
         this.playerNetGainLoss += netGainLoss;
+
+
     }
 
     /**
