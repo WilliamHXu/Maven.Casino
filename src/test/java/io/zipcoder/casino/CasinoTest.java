@@ -1,26 +1,5 @@
 package io.zipcoder.casino;
 
-
-<<<<<<< HEAD
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.Console;
-
-public class CasinoTest {
-
-    @Test
-    public void printBannerTest(){
-        // Given
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Console console = getConsoleWithBufferedInputAndOutput("600\n200",baos);
-
-    }
-
-    public Console getConsoleWithBufferedInputAndOutput(String input, ByteArrayOutputStream baos){
-      return null;
-=======
 import io.zipcoder.casino.utilities.Console;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 public class CasinoTest {
+
 
 
     @Test
@@ -151,7 +131,6 @@ public class CasinoTest {
             testConsole = new Console(bais, new PrintStream(baos));
         }
         return testConsole;
->>>>>>> 6da5e9ca0c275fb277f7aef5e53985874f752394
     }
 
 }

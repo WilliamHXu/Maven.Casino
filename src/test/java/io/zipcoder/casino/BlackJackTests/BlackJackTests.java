@@ -23,9 +23,13 @@ public class BlackJackTests {
         hand.addCardToHand(card1);
         hand.addCardToHand(card2);
 
+        BlackJackPlayer blackJackPlayer = new BlackJackPlayer(new Player());
+        blackJackPlayer.addCard(card1);
+        blackJackPlayer.addCard(card2);
+
         // Then
         int expected = 10;
-        int actual = hand.getHandSum();
+        int actual = blackJackPlayer.getHandSum();
 
         System.out.println("Actual ::::: " + actual);
 
