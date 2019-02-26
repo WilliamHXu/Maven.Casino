@@ -7,6 +7,8 @@ import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Deck;
 import io.zipcoder.casino.utilities.Player;
 
+import java.util.ArrayList;
+
 public class BlackJackGame implements Game {
     // Instance Variables
     private BlackJackPlayer player;
@@ -104,13 +106,21 @@ public class BlackJackGame implements Game {
 
 
         } else if (playerSum == dealerSum) {
-            player.updateWallet(totalMoney);
+                console.println("Its a Tie! Push");
+            //player.updateWallet(totalMoney);
 
 
         } else if(playerSum == 21){
-            console.println("You have Blackjack!");
+            console.println("You have BlackJack! You Win!");
 
 
+        } else if(dealerSum == 21){
+            console.println("Dealer has BlackJack! You lose!");
+
+        } else if(dealerSum > 21 ){
+                console.println("Dealer bust! You Win!");
+        } else if(playerSum > 21 ){
+            console.println("You lose this round, bust!");
         } else {
             dealer.updateWallet(totalMoney);
             console.println("Dealer Wins");
@@ -180,7 +190,7 @@ public class BlackJackGame implements Game {
         boolean dealerhit = false;
         while (!dealerhit) {
             // Dealer Hits
-            if (dealer.getHandSum() < 17) {
+            if (dealer.getHandSum() < 16) {
                 console.println("The Dealer hits ");
                 dealer.addCard(deck.cardDealFromTop());
                 dealerhit = false;
@@ -195,6 +205,9 @@ public class BlackJackGame implements Game {
         }
 
     }
+
+
+
 }
 
 
