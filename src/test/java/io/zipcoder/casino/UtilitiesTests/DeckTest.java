@@ -39,9 +39,9 @@ public class DeckTest {
         // When
         ArrayList<Card> actualAL = deck.dealNFromTop(3);
         // Then
-        Assert.assertEquals(cardArrayList.get(1), actualAL.get(1));
-        Assert.assertEquals(cardArrayList.get(2), actualAL.get(2));
-        Assert.assertEquals(cardArrayList.get(3), actualAL.get(3));
+        Assert.assertEquals(cardArrayList.get(1).toString(), actualAL.get(1).toString());
+        Assert.assertEquals(cardArrayList.get(2).toString(), actualAL.get(2).toString());
+        Assert.assertEquals(cardArrayList.get(0).toString(), actualAL.get(0).toString());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class DeckTest {
         // When
         deck.shuffle();
         // Then
-        Assert.assertNotEquals(deck, startingDeck);
+        Assert.assertNotEquals(deck.toString(), startingDeck.toString());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class DeckTest {
         deck.shuffle();
         deck.refill();
         // Then
-        Assert.assertEquals(expected.getDeck(), deck.getDeck());
+        Assert.assertEquals(expected.getDeck().toString(), deck.getDeck().toString());
     }
 
 

@@ -11,12 +11,25 @@ public class Casino {
     public ArrayList<Player> playerList;
     public boolean exitFlag = false;
     public Game currentGame;
+
     private Integer houseBalance;
     Console console = new Console(System.in, System.out);
+<<<<<<< HEAD
+=======
 
-    public static void main(String[] args) {
-        // write your tests before you start fucking with this
+    // Constructor
+
+    public Casino(){
+        playerList = new ArrayList<Player>();
+        houseBalance = 0;
     }
+
+    public Casino(Console console){
+        this.console = console;
+        playerList = new ArrayList<Player>();
+        houseBalance = 0;
+    }
+
 
     public void start(){
         // Introduce the Banner
@@ -39,6 +52,34 @@ public class Casino {
             performNextAction(nextAction);
         }
     }
+
+
+    public void checkHouse() {
+        console.println("The house has made %d tonight", houseBalance);
+    }
+
+
+    public void goToATM() {
+        console.println("Welcome to the HRC ATM!");
+        String name = console.getStringInput("Who needs to withdraw money?");
+        boolean withdrawFlag = false;
+        for(Player player : playerList){
+            if(player.getName().toUpperCase().equals(name.toUpperCase())){
+                int withdraw = console.getIntegerInput("How much would you like to withdraw?");
+                player.goToATM(withdraw);
+                withdrawFlag = true;
+            }
+        }
+        // If there was no withdraw
+        if (!withdrawFlag){
+            console.println("Please enter a valid name");
+            goToATM();
+        }
+        else {
+            console.println("Thank you for your business!");
+        }
+    }
+
 
     private void performNextAction(Integer nextAction) {
 //        if(nextAction.equals(1)){
@@ -81,40 +122,15 @@ public class Casino {
 //        }
     }
 
-    private void checkHouse() {
-        console.println("The house has made %d tonight", houseBalance);
-    }
 
-    private void goToATM() {
-        console.println("Welcome to the HRC ATM!");
-        String name = console.getStringInput("Who needs to withdraw money?");
-        boolean withdrawFlag = false;
-        for(Player player : playerList){
-            if(player.getName().toUpperCase().equals(name.toUpperCase())){
-                int withdraw = console.getIntegerInput("How much would you like to withdraw?");
-                player.goToATM(withdraw);
-                withdrawFlag = true;
-            }
-        }
-        // If there was no withdraw
-        if (!withdrawFlag){
-            console.println("Please enter a valid name");
-            goToATM();
-        }
-        else {
-            console.println("Thank you for your business!");
-        }
-    }
-
-
-    private void getStartingPlayers() {
+    public void getStartingPlayers() {
         int numberOfStartingPlayers = console.getIntegerInput("How many are we bringing today?");
         for (int i = 0; i < numberOfStartingPlayers; i++){
             addPlayer();
         }
     }
 
-    private void addPlayer() {
+    public void addPlayer() {
         String name = console.getStringInput("Please enter the name of our new guest");
         int wallet = console.getIntegerInput("And how much would you like to start with today?");
         Player player = new Player(name, wallet);
@@ -132,8 +148,11 @@ public class Casino {
         return playerList.size();
     }
 
-    private void printBanner(){
+
+    public void printBanner(){
         String banner = "\n" +
+             //   "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n" +
+
                 "______  ______        ______       ________      ___________                _________             _____              \n" +
                 "___  / / /__(_)______ ___  /_      ___  __ \\________  /__  /____________    __  ____/_____ __________(_)____________ \n" +
                 "__  /_/ /__  /__  __ `/_  __ \\     __  /_/ /  __ \\_  /__  /_  _ \\_  ___/    _  /    _  __ `/_  ___/_  /__  __ \\  __ \\\n" +
@@ -143,12 +162,13 @@ public class Casino {
         console.println(banner);
     }
 
-    private void printSlogan() {
+
+    public void printSlogan() {
         String slogan = "If You Put Down Cents, We're Throwing You Out";
         console.println(slogan);
     }
 
-    private void welcomePlayers() {
+    public void welcomePlayers() {
         String welcome = "Welcome ";
         for (Player player : playerList){
             welcome += player.getName() + " ";
@@ -166,3 +186,4 @@ public class Casino {
         houseBalance = balance;
     }
 }
+

@@ -69,10 +69,11 @@ public class HandTest {
         ArrayList<Card> actual2 = hand.getHandList();
 
         // Then
-        Assert.assertEquals(expected1, actual);
-        Assert.assertEquals(expected2, actual2);
+        Assert.assertEquals(expected1.toString(), actual.toString());
+        Assert.assertEquals(expected2.toString(), actual2.toString());
     }
 
+<<<<<<< HEAD
     /*
 
     @Test
@@ -94,6 +95,8 @@ public class HandTest {
         Assert.assertEquals(expected2, actual2);
     }
     */
+=======
+>>>>>>> 6da5e9ca0c275fb277f7aef5e53985874f752394
 
     @Test
     public void addCardToHandTest() {

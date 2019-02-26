@@ -60,24 +60,12 @@ public class Hand {
     }
 
 
-    /**
-     * Removes all cards on a certain suit from the hand and returns in an ArrayList
-     * @param suit
-     * @return
-     */
-    /*
-
-    public ArrayList<Card> playAllCards(String suit) {
-        ArrayList<Card> playedCards = new ArrayList<Card>();
-        for(Card card : handList){
-            if(card.getSuit().equals(suit)){
-                playCardFromHand(card);
-                playedCards.add(card);
-            }
-        }
-        return playedCards;
+    @Override
+    public String toString() {
+        return "Hand{" +
+                "handList=" + handList +
+                '}';
     }
-    */
 
     /**
      * Removes all cards on a certain value from the hand and returns in an ArrayList

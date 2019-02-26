@@ -8,6 +8,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.DS_Store
 .recommenders
 
 # External tool builders
