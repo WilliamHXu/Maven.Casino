@@ -8,7 +8,7 @@ import io.zipcoder.casino.utilities.Player;
 
 import java.util.*;
 
-public class ChoHanGame {
+public class ChoHanGame{
 
     /**
      * Instance variables
@@ -24,6 +24,7 @@ public class ChoHanGame {
     private Integer userChoice = 1;
     boolean action = true;
     private Double houseRate = 0.05;
+    Integer houseCommission = 0;
 
 
     public ChoHanGame(ArrayList<Player> playerList) {
@@ -161,7 +162,6 @@ public class ChoHanGame {
     /** calculate the house commission
      * @return houseCommissionAmount */
     private Integer getHouseCommisionAmt(Integer gameBetAmt) {
-        Integer houseCommission = 0;
         Integer houseBalance = casinoObj.getHouseBalance();
         houseCommission += (int) (gameBetAmt * houseRate);
         casinoObj.setHouseBalance(houseBalance + houseCommission);
@@ -268,6 +268,19 @@ public class ChoHanGame {
             }
         }
         return winnersTotalBet;
+    }
+
+    public ArrayList<Integer> getPlayerNetGain(){
+        ArrayList<Integer> playsrsNetGain = new ArrayList<Integer>();
+        for (ChoHanPlayer player: playerListCH) {
+            Integer store = player.getNetGainLossPlayerCH();
+            playsrsNetGain.add(store);
+        }
+        return playsrsNetGain;
+    }
+
+    public Integer getHouseCommission(){
+        return this.houseCommission;
     }
 
 }

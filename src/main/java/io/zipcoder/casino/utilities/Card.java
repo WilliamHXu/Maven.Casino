@@ -1,6 +1,6 @@
 package io.zipcoder.casino.utilities;
 
-public class Card {
+public class Card implements Comparable<Card>{
     // Instance Variables
     private String suit;
     private Integer value;
@@ -55,5 +55,13 @@ public class Card {
 
     public String getSuit() {
         return this.suit;
+    }
+
+
+    public int compareTo(Card o) {
+        int compar1 = getValue().compareTo(o.getValue());
+
+
+        return compar1;
     }
 }

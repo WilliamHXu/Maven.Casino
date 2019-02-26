@@ -5,6 +5,8 @@ import io.zipcoder.casino.utilities.Card;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Hand {
     // Instance Variables
@@ -17,7 +19,7 @@ public class Hand {
     }
 
     public Hand(){
-        this(new ArrayList<>());
+        this(new ArrayList<Card>());
     }
 
     // Methods
@@ -29,8 +31,7 @@ public class Hand {
     public String displayHand() {
         String handString = "";
         for (Card card : handList){
-            String s = card.toString() + " ";;
-            handString += s;
+            handString += card.toString() + " ";
         }
         return handString;
     }
@@ -98,7 +99,7 @@ public class Hand {
      */
 
     public void addCardToHand(Card card) {
-        handList.add(card);
+        this.handList.add(card);
     }
 
     /**
@@ -111,34 +112,54 @@ public class Hand {
         return this.handList.contains(card);
     }
 
+    public boolean hasCard(Integer cardTocheck) {
+        for (Card card : handList) {
+            if (card.getValue().equals(cardTocheck))
+                return true;
 
-    public int getHandSum(){
+        }
 
-        int handSum = 0;
-        int numAces = 0;
-        ArrayList<Card> handList = getHandList();
-        // Calculate each card's contribution to handSum
-        for (Card card : handList){
-            // Check for Aces
-            if(card.getValue().equals(1)){
-                numAces++;
-                handSum += 11;
-            }
-            // Check for Faces
-            else if(card.getValue().equals(11) || card.getValue().equals(12) || card.getValue().equals(13)) {
-                handSum += 10;
-            }
-            // Increment All Others
-            else {
-                handSum += card.getValue();
-            }
-        }
-        // Deal with Aces
-        while (handSum > 21 && numAces > 0){
-            handSum -= 10;
-            numAces--;
-        }
-        return handSum;
+
+        return false;
     }
 
+    public ArrayList<Card> getCards(Integer getcard) {
+
+        ArrayList<Card> retreiveCards = new ArrayList<Card>();
+
+        for (Card card : handList) {
+            if (card.getValue().equals(getcard))
+                retreiveCards.add(card);
+
+        }
+        handList.removeAll(retreiveCards);
+
+        return retreiveCards;
+    }
+
+
+    public void addtoHand(ArrayList<Card> cards){
+        handList.addAll(cards);
+    }
+
+    /** verify the cards in the hand matches in the book*/
+
+    public List<Card> bookEvalute(){
+        Collections.sort(handList);
+        ArrayList<Card> cardEvalu = new ArrayList<Card>();
+        for (int i = 0; i < handList.size()-3; i++) {
+            Card c1 = handList.get(i+0);
+            Card c2 = handList.get(i+1);
+            Card c3 = handList.get(i+2);
+            Card c4 = handList.get(i+3);
+            if(c1.getValue().equals(c2.getValue()) && c2.getValue().equals(c3.getValue()) && c3.getValue().equals(c4.getValue())) {
+                cardEvalu.add(c1);
+                cardEvalu.add(c2);
+                cardEvalu.add(c3);
+                cardEvalu.add(c4);
+            }
+
+        }
+        return cardEvalu;
+    }
 }
