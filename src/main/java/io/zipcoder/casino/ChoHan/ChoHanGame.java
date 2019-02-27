@@ -1,14 +1,12 @@
 package io.zipcoder.casino.ChoHan;
 
 import io.zipcoder.casino.Casino;
-import io.zipcoder.casino.Interfaces.Game;
 import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Dice;
 import io.zipcoder.casino.utilities.Player;
-
 import java.util.*;
 
-public class ChoHanGame{
+public class ChoHanGame {
 
     /**
      * Instance variables
@@ -73,20 +71,6 @@ public class ChoHanGame{
             winnersBetSum = getWinnersBetSum(winnersList, getPlayerBetList());
             losersList = getLosersCH(getPlayerGuessList(), throwOutput);
 
-//            /** calculate and update each winner players wallets
-//             * each winning player winning amount = (each winner bet amount/sum of winners bets)* bet amount for this game */
-//            for (int i = 0; i < winnersList.size(); i++) {
-//                for (Map.Entry<String, Integer> entry : getPlayerBetList().entrySet()) {
-//                    if (winnersList.get(i).equalsIgnoreCase(entry.getKey())) {
-//                        int winnerBetAmt = entry.getValue();
-//                        double winPercent = winnerBetAmt / (double) winnersBetSum;
-//                        int winnerWalletAddition = (int) (winPercent * gameBetAmt);
-//                        this.choHanPlayer.setPlayerWalletBalance(entry.getKey(), winnerWalletAddition);
-//                        this.choHanPlayer.setNetGainLossPlayerCH(winnerWalletAddition);
-//                    }
-//                }
-//            }
-
 
             /** calculate and update each winner players wallets
              * each winning player winning amount = (each winner bet amount/sum of winners bets)* bet amount for this game */
@@ -116,7 +100,7 @@ public class ChoHanGame{
                                 int loserWalletReduction = entry.getValue();
                                 loserWalletReduction *= -1;
                                 choHanPlayer.setPlayerWalletBalance(loserWalletReduction);
-                            //    choHanPlayer.setNetGainLossPlayerCH(loserWalletReduction);
+                                //    choHanPlayer.setNetGainLossPlayerCH(loserWalletReduction);
                             }
                         }
                     }
@@ -159,9 +143,12 @@ public class ChoHanGame{
         return ret;
     }
 
-    /** calculate the house commission
-     * @return houseCommissionAmount */
-    private Integer getHouseCommisionAmt(Integer gameBetAmt) {
+    /**
+     * calculate the house commission
+     *
+     * @return houseCommissionAmount
+     */
+    public Integer getHouseCommisionAmt(Integer gameBetAmt) {
         Integer houseBalance = casinoObj.getHouseBalance();
         houseCommission += (int) (gameBetAmt * houseRate);
         casinoObj.setHouseBalance(houseBalance + houseCommission);
@@ -218,8 +205,7 @@ public class ChoHanGame{
         Integer throwOutput = diceObj.throwAndSum();
         if (throwOutput % 2 == 0) {
             inOut.println("The dice throw result for this game is Cho: " + throwOutput);
-        } else {
-            inOut.println("The dice throw result for this game is Han: " + throwOutput);
+        } else { inOut.println("The dice throw result for this game is Han: " + throwOutput);
         }
         return throwOutput;
     }
@@ -270,18 +256,31 @@ public class ChoHanGame{
         return winnersTotalBet;
     }
 
-    public ArrayList<Integer> getPlayerNetGain(){
+    public ArrayList<Integer> getPlayerNetGain() {
         ArrayList<Integer> playsrsNetGain = new ArrayList<Integer>();
-        for (ChoHanPlayer player: playerListCH) {
+        for (ChoHanPlayer player : playerListCH) {
             Integer store = player.getNetGainLossPlayerCH();
             playsrsNetGain.add(store);
         }
         return playsrsNetGain;
     }
 
-    public Integer getHouseCommission(){
+    public Integer getHouseCommission() {
         return this.houseCommission;
     }
+
+//    public Console getConsoleWithBufferedInputAndOutput(String input, ByteArrayOutputStream baos) {
+//
+//        if (input == null) {
+//            inOut = new Console(System.in, new PrintStream(baos));
+//        } else {
+//            ByteArrayOutputStream bais = new ByteArrayOutputStream(input.getBytes());
+//         //   ByteArrayInputStream bais = new ByteArrayInputStream(input.getBytes());
+//            inOut = new Console(bais, new PrintStream(baos));
+//        }
+//        return inOut;
+//}
+//    }
 
 }
 
