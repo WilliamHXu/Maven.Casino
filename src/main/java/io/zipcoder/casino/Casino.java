@@ -2,6 +2,7 @@ package io.zipcoder.casino;
 
 
 import io.zipcoder.casino.ChoHan.ChoHanGame;
+import io.zipcoder.casino.Craps.CrapsGame;
 import io.zipcoder.casino.Interfaces.Game;
 import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Player;
@@ -65,13 +66,15 @@ public class Casino {
 //            // End sequence updates
 //
 //        }
-//        else if(nextAction.equals(3)){
-//            // Start Craps
-//            Game craps = new CrapsGame(playerList);
-//            craps.start();
-//            // End sequence updates
-//
-//        }
+        if(nextAction.equals(3)){
+           // Start Craps
+            Game craps = new CrapsGame(playerList);
+            craps.start();
+            // End sequence updates
+            updatePlayersWallets(((CrapsGame) craps).getPlayerNetGain());
+            updateHouseBalance(((CrapsGame) craps).getHouseCommission());
+
+        }
         if(nextAction.equals(4)){
             // Start ChoHan
             ChoHanGame choHan = new ChoHanGame(playerList);

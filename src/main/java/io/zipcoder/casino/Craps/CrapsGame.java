@@ -20,7 +20,8 @@ public class CrapsGame implements Game {
     private ArrayList<Player> playerList = new ArrayList<Player>(); //playerList from Player class
     private ArrayList<CrapsPlayer> playerListCraps = new ArrayList<CrapsPlayer>(); //Craps player list
     CrapsPlayer crapsPlayer;
-    Integer houseCommission = 0;
+    Integer houseCommission;
+    Integer houseAmount = 0;
 
     public CrapsGame(ArrayList<Player> playerList) {
         this.playerList = playerList;
@@ -56,6 +57,7 @@ public class CrapsGame implements Game {
         Integer comeLineBet = 0;
         Integer comeLineAmount = 0;
 
+
         Integer pointRoll = 0;
         //bet Integers have 'states': 1 = win, 2 = lose, 3 = push.
 
@@ -67,6 +69,7 @@ public class CrapsGame implements Game {
         }
 
         //Greeting
+        inOut.println("");
         inOut.println("Welcome to the High Roller Craps table.  Let's roll them bones!");
         inOut.println("");
 
@@ -78,10 +81,11 @@ public class CrapsGame implements Game {
             inOut.println("Betting time.");
             inOut.println("Enter 1 for 'Pass'");
             inOut.println("Enter 2 for 'Don't Pass'");
+            inOut.println("Enter 3 to Skip Betting");
 
             while (!scan.hasNextInt()) {
                 scan.next();
-                inOut.println("Enter 1 or 2");
+                inOut.println("Enter 1, 2, or 3");
             }
 
 
@@ -143,26 +147,30 @@ public class CrapsGame implements Game {
             //add passLineAmount to playerWallet
             crapsPlayer.setPlayerWalletBalance(passLineAmount);
             //remove passLineAmount from houseWallet
-            crapsPlayer.setPlayerWalletBalance(-(passLineAmount));
-            inOut.println("Balance "+ crapsPlayer.getWallet());
+            houseAmount -= comeLineAmount;
+            inOut.println("Balance: " + crapsPlayer.getWallet());
+            inOut.println("");
         } else if (isPassBet == true && passBet == 2) {
             //remove passLineAmount from playerWallet
             crapsPlayer.setPlayerWalletBalance(-(passLineAmount));
             //add passLineAmount to houseWallet
-            crapsPlayer.setPlayerWalletBalance(passLineAmount);
-            inOut.println("Balance "+ crapsPlayer.getWallet());
+            houseAmount += comeLineAmount;
+            inOut.println("Balance: " + crapsPlayer.getWallet());
+            inOut.println("");
         } else if (isDontPassBet == true && dontPassBet == 1) {
             //add passLineAmount to playerWallet
             crapsPlayer.setPlayerWalletBalance(passLineAmount);
             //remove passLineAmount from houseWallet
-            crapsPlayer.setPlayerWalletBalance(-(passLineAmount));
-            inOut.println("Balance "+ crapsPlayer.getWallet());
+            houseAmount -= comeLineAmount;
+            inOut.println("Balance: " + crapsPlayer.getWallet());
+            inOut.println("");
         } else if (isDontPassBet == true && dontPassBet == 2) {
             //remove passLineAmount from playerWallet
             crapsPlayer.setPlayerWalletBalance(-(passLineAmount));
             //add passLineAmount to houseWallet
-            crapsPlayer.setPlayerWalletBalance(passLineAmount);
-            inOut.println("Balance "+ crapsPlayer.getWallet());
+            houseAmount += comeLineAmount;
+            inOut.println("Balance: " + crapsPlayer.getWallet());
+            inOut.println("");
         }
         //Come Line Bet
         while (point != 0 && comeLineBet == 0) {
@@ -170,10 +178,11 @@ public class CrapsGame implements Game {
             inOut.println("Betting time.");
             inOut.println("Enter 1 for 'Come'");
             inOut.println("Enter 2 for 'Don't Come'");
+            inOut.println("Enter 3 to Skip Betting");
 
             while (!scan.hasNextInt()) {
                 scan.next();
-                inOut.println("Enter 1 or 2");
+                inOut.println("Enter 1, 2, or 3");
             }
             comeLineBet = scan.nextInt();
             if (comeLineBet == 1) {
@@ -244,29 +253,34 @@ public class CrapsGame implements Game {
                 //add comeLineAmount to playerWallet
                 crapsPlayer.setPlayerWalletBalance(comeLineAmount);
                 //remove comeLineAmount from houseWallet
-                crapsPlayer.setPlayerWalletBalance(-(comeLineAmount));
-                inOut.println("Balance "+ crapsPlayer.getWallet());
+                houseAmount -= comeLineAmount;
+                inOut.println("Balance: " + crapsPlayer.getWallet());
+                inOut.println("");
             } else if (isComeBet == true && comeBet == 2) {
                 //remove comeLineAmount from playerWallet
                 crapsPlayer.setPlayerWalletBalance(-(comeLineAmount));
                 //add comeLineAmount to houseWallet
-                crapsPlayer.setPlayerWalletBalance(comeLineAmount);
-                inOut.println("Balance "+ crapsPlayer.getWallet());
+                houseAmount += comeLineAmount;
+                inOut.println("Balance: " + crapsPlayer.getWallet());
+                inOut.println("");
             } else if (isDontComeBet == true && dontComeBet == 1) {
                 //add comeLineAmount to playerWallet
                 crapsPlayer.setPlayerWalletBalance(comeLineAmount);
                 //remove comeLineAmount from houseWallet
-                crapsPlayer.setPlayerWalletBalance(-(comeLineAmount));
-                inOut.println("Balance "+ crapsPlayer.getWallet());
+                houseAmount -= comeLineAmount;
+                inOut.println("Balance: " + crapsPlayer.getWallet());
+                inOut.println("");
             } else if (isDontComeBet == true && dontComeBet == 2) {
                 //remove passLineAmount from playerWallet
                 crapsPlayer.setPlayerWalletBalance(-(comeLineAmount));
                 //add comeLineAmount to houseWallet
-                crapsPlayer.setPlayerWalletBalance(comeLineAmount);
-                inOut.println("Balance "+ crapsPlayer.getWallet());
+                houseAmount += comeLineAmount;
+                inOut.println("Balance: " + crapsPlayer.getWallet());
+                inOut.println("");
             }
         }
     }
+
 
 //    private Integer getBetAmount(String prompt) {
 //        inOut.println(prompt);
@@ -278,13 +292,15 @@ public class CrapsGame implements Game {
 //    }
 
 
-
     public void setInOut(Console inOut) {
         this.inOut = inOut;
     }
 
     public void displayGameState() {
-        inOut.print("The Craps game state of the players:");
+        inOut.print("The ChoHan game state of the players:" + "\n");
+        for (CrapsPlayer player : playerListCraps) {
+            inOut.println("Name: " + player.getName() + " Wallet Balance: " + player.getWallet() + " NetGainLoss: " + player.getPlayerNetGainLoss());
+        }
     }
 
 
@@ -302,14 +318,32 @@ public class CrapsGame implements Game {
         return null;
     }
 
+
+    public ArrayList<Integer> getPlayerNetGain() {
+        ArrayList<Integer> playsrsNetGain = new ArrayList<Integer>();
+        for (CrapsPlayer player : playerListCraps) {
+            Integer store = player.getNetGainLossPlayerCraps();
+            playsrsNetGain.add(store);
+        }
+        return playsrsNetGain;
+    }
+
+    public Integer getHouseCommisionAmt(Integer gameBetAmt) {
+        Integer houseBalance = casinoObject.getHouseBalance();
+        houseCommission += houseAmount;
+        casinoObject.setHouseBalance(houseBalance);
+
+        return houseCommission;
+    }
+
+    public Integer getHouseCommission(){
+        return this.houseAmount;
+    }
+
     public void exit() {
         System.exit(0);
     }
 
-   /* public static void main(String[] args) {
-        CrapsGame testCraps = new CrapsGame();
-        testCraps.start();
-    } */
 
 }
 
