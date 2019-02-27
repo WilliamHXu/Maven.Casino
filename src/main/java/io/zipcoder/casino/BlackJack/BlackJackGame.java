@@ -107,10 +107,11 @@ public class BlackJackGame implements Game {
 
         } else if (playerSum == dealerSum) {
             console.println("Its a Tie! Push");
-            //player.updateWallet(totalMoney);
+            player.updateWallet(totalMoney);
 
 
         } else if(playerSum == 21){
+            player.updateWallet(totalMoney * 2)
             console.println("You have BlackJack! You Win!");
 
 
