@@ -11,61 +11,35 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class ChoHanPlayerTest {
+    private ChoHanGame choHanGame;
+    ArrayList<Player> PlayersList = new ArrayList<Player>();
     private ChoHanPlayer choHanPlayer;
+
     @Before
     public void initial() {
-        ArrayList<Player> players = new ArrayList<Player>();
-        ChoHanGame choHanGame = new ChoHanGame(players);
+        Player player1 = new Player("Nirmala", 100);
+        Player player2 = new Player("Will", 1000);
+        Player player3 = new Player("Shaun", 0);
+        Player player4 = new Player("Laxmi", 1500);
+        Player player5 = new Player("Charlie", 2000);
+        Player player6 = new Player("Sean", 500);
+        PlayersList.add(player1);
+        PlayersList.add(player2);
+        PlayersList.add(player3);
+        PlayersList.add(player4);
+        PlayersList.add(player5);
+        PlayersList.add(player6);
     }
 
     @Test
-    public void playerListChoHanTest()
-    {
+    public void getWalletBalanceChoHanPlayerTest() {
         //Given
-        ArrayList<Player> playerList = new ArrayList<Player>();
-        Player player1 = new Player("John", 100);
-        Player player2 = new Player("Sal", 1000);
-        Player player3 = new Player("Laxmi", 0);
-        playerList.add(player1);
-        playerList.add(player2);
-        playerList.add(player3);
+        Player player1 = new Player("Nirmala", 100);
+        PlayersList.add(player1);
         //When
-        ArrayList<Player> expectedList = new ArrayList<Player>(playerList);
-       // ArrayList<ChoHanPlayer> actualList = choHanPlayer.g;
-        //playerList.remove(2);
-        expectedList.remove(2);
-        //Then
-       // Assert.assertEquals(expectedList.size(),actualList.size());
-    }
-//
-//    @Test
-//    public void getplayerGuessTest(){
-//        //Given
-//        String PlayerGuessE = "Even";
-//        String PlayerGuessO = "odd";
-//        //When
-//       // Integer actualPlayerGuessE = choHanPlayer.getPlayerGuess(PlayerGuessE);
-//        //Integer actualPlayerGuessO = choHanPlayer.getPlayerGuess(PlayerGuessO);
-//        Integer expectedPlayerGuessE = 2;
-//        Integer expectedPlayerGuessO = 1;
-//        //Then
-//        Assert.assertEquals(expectedPlayerGuessE,actualPlayerGuessE);
-//        Assert.assertEquals(expectedPlayerGuessO,actualPlayerGuessO);
-//    }
-
-    @Test
-    public void updatePlayerWallet() {
-    }
-
-    @Test
-    public void getHouseBalance() {
-    }
-
-    @Test
-    public void getPlayerGuess() {
-    }
-
-    @Test
-    public void getPlayerBets() {
+        ChoHanPlayer choHanPlayer = new ChoHanPlayer(player1);
+        Integer result = choHanPlayer.getWalletBalanceChoHanPlayer();
+        //Them
+        Assert.assertNotNull(result);
     }
 }

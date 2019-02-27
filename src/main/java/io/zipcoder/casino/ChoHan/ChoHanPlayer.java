@@ -1,22 +1,7 @@
 package io.zipcoder.casino.ChoHan;
-
-
-import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Player;
 
-import java.util.*;
-
 public class ChoHanPlayer extends Player{
-    /**
-     * instance variables
-     */
-
-    private Console inOut = new Console(System.in, System.out);
-
-    /**Nullary constructor*/
-   public void ChoHanPlayer() {
-
-    }
 
     /** ChoHan player constructor */
     public ChoHanPlayer(Player player) {
@@ -24,8 +9,6 @@ public class ChoHanPlayer extends Player{
         super.playerNetGainLoss = 0;
     }
 
-    public void bet (Integer value)
-    {}
 
     /** get method to return ChoHan player wallet balance */
     public Integer getWalletBalanceChoHanPlayer() {
@@ -40,7 +23,7 @@ public class ChoHanPlayer extends Player{
     }
 
     /**update CH player wallet, playerwallet and update netgainloss with the winning amount*/
-    public void setPlayerWalletBalance( Integer walletChangeAmt) {
+    public void setPlayerWalletBalance(Integer walletChangeAmt) {
 
         this.updateWallet(walletChangeAmt);
     }
