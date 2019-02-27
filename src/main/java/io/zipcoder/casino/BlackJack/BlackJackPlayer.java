@@ -14,7 +14,7 @@ public class BlackJackPlayer extends Player {
     public BlackJackPlayer(Player player) {
         super.playerName = player.getName();
         super.walletBalance = player.getWallet();
-        super.playerNetGainLoss = player.getPlayerNetGainLoss();
+        super.playerNetGainLoss = 0;
         this.hand = new Hand();
     }
 

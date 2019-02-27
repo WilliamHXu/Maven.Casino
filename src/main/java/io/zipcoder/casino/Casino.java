@@ -49,7 +49,7 @@ public class Casino {
             // Get Next Action
             Integer nextAction = getNextAction();
             // Check for Exit
-            if(nextAction == 8){
+            if(nextAction == 9){
                 exitFlag = true;
             }
             // Perform the next action
@@ -61,26 +61,34 @@ public class Casino {
         if(nextAction.equals(1)){
             Player player = selectUserToPlay();
             // Start GoFish
+            goFishGreeter();
             GoFishGame goFish = new GoFishGame(player);
             goFish.start();
         }
         else if(nextAction.equals(2)){
             Player player = selectUserToPlay();
             // Start BlackJack
+            blackJackGreeter();
             BlackJackGame blackJack = new BlackJackGame(player);
             blackJack.start();
             // End sequence updates
+            updatePlayerWallet(blackJack.getPlayerNetGain(), player);
+            updateHouseBalance(blackJack.getHouseCommission());
 
         }
         else if(nextAction.equals(3)){
+            Player player = selectUserToPlay();
             // Start Craps
-            Game craps = new CrapsGame(playerList);
+            crapsGreeter();
+            CrapsGame craps = new CrapsGame(player);
             craps.start();
             // End sequence updates
-
+            updatePlayerWallet(craps.getPlayerNetGain(), player);
+            updateHouseBalance(craps.getHouseCommission());
         }
         else if(nextAction.equals(4)){
             // Start ChoHan
+            choHanGreeter();
             ChoHanGame choHan = new ChoHanGame(playerList);
             choHan.start();
             // End sequence updates
@@ -96,8 +104,81 @@ public class Casino {
         else if(nextAction.equals(7)){
             addPlayer();
         }
+        else if(nextAction.equals(8)){
+            checkWallets();
+        }
         else{
             console.println("Either do something or get off the floor. We ... ugh I mean you got money to make!");
+        }
+    }
+
+    void choHanGreeter() {
+        console.println("\n" +
+                "                                                                \n" +
+                "    //   ) )                          //    / /                 \n" +
+                "   //        / __      ___           //___ / /  ___       __    \n" +
+                "  //        //   ) ) //   ) ) ____  / ___   / //   ) ) //   ) ) \n" +
+                " //        //   / / //   / /       //    / / //   / / //   / /  \n" +
+                "((____/ / //   / / ((___/ /       //    / / ((___( ( //   / /   \n");
+    }
+
+    void crapsGreeter() {
+        console.println("\n" +
+                "      ...                                                    .x+=:.   \n" +
+                "   xH88\"`~ .x8X                                             z`    ^%  \n" +
+                " :8888   .f\"8888Hf    .u    .                .d``              .   <k \n" +
+                ":8888>  X8L  ^\"\"`   .d88B :@8c        u      @8Ne.   .u      .@8Ned8\" \n" +
+                "X8888  X888h       =\"8888f8888r    us888u.   %8888:u@88N   .@^%8888\"  \n" +
+                "88888  !88888.       4888>'88\"  .@88 \"8888\"   `888I  888. x88:  `)8b. \n" +
+                "88888   %88888       4888> '    9888  9888     888I  888I 8888N=*8888 \n" +
+                "88888 '> `8888>      4888>      9888  9888     888I  888I  %8\"    R88 \n" +
+                "`8888L %  ?888   !  .d888L .+   9888  9888   uW888L  888'   @8Wou 9%  \n" +
+                " `8888  `-*\"\"   /   ^\"8888*\"    9888  9888  '*88888Nu88P  .888888P`   \n" +
+                "   \"888.      :\"       \"Y\"      \"888*\"\"888\" ~ '88888F`    `   ^\"F     \n" +
+                "     `\"\"***~\"`                   ^Y\"   ^Y'     888 ^                  \n" +
+                "                                               *8E                    \n" +
+                "                                               '8>                    \n" +
+                "                                                \"                     \n");
+    }
+
+    void goFishGreeter() {
+        console.println("\n" +
+                "  @@@@@@@   @@@@@@  @@@@@@@@ @@@  @@@@@@ @@@  @@@\n" +
+                " !@@       @@!  @@@ @@!      @@! !@@     @@!  @@@\n" +
+                " !@! @!@!@ @!@  !@! @!!!:!   !!@  !@@!!  @!@!@!@!\n" +
+                " :!!   !!: !!:  !!! !!:      !!:     !:! !!:  !!!\n" +
+                "  :: :: :   : :. :   :       :   ::.: :   :   : :\n" +
+                "                                                 \n");
+    }
+
+    void blackJackGreeter() {
+        console.println("\n" +
+                "                                                                                                              \n" +
+                "     ***** **   ***                             *                ***** **                            *        \n" +
+                "  ******  ***    ***                          **              ******  **** *                       **         \n" +
+                " **   *  * **     **                          **             **   *  * ****                        **         \n" +
+                "*    *  *  **     **                          **            *    *  *   **                         **         \n" +
+                "    *  *   *      **                          **                *  *                               **         \n" +
+                "   ** **  *       **       ****       ****    **  ***          ** **            ****       ****    **  ***    \n" +
+                "   ** ** *        **      * ***  *   * ***  * ** * ***         ** **           * ***  *   * ***  * ** * ***   \n" +
+                "   ** ***         **     *   ****   *   ****  ***   *        **** **          *   ****   *   ****  ***   *    \n" +
+                "   ** ** ***      **    **    **   **         **   *        * *** **         **    **   **         **   *     \n" +
+                "   ** **   ***    **    **    **   **         **  *            ** **         **    **   **         **  *      \n" +
+                "   *  **     **   **    **    **   **         ** **            ** **         **    **   **         ** **      \n" +
+                "      *      **   **    **    **   **         ******           ** **         **    **   **         ******     \n" +
+                "  ****     ***    **    **    **   ***     *  **  ***          ** **         **    **   ***     *  **  ***    \n" +
+                " *  ********      *** *  ***** **   *******   **   *** *       *  *           ***** **   *******   **   *** * \n" +
+                "*     ****         ***    ***   **   *****     **   ***    **     *            ***   **   *****     **   ***  \n" +
+                "*                                                         ****   *                                            \n" +
+                " **                                                       *  * **                                             \n" +
+                "                                                         *    **                                              \n" +
+                "                                                              *                                               \n" +
+                "                                                                                                              \n");
+    }
+
+    void checkWallets() {
+        for(Player player : playerList){
+            console.println("%s has %d chips in their stack.", player.getName(), player.getWallet());
         }
     }
 
@@ -108,7 +189,7 @@ public class Casino {
                 return player;
             }
         }
-        console.println("%s is not in your party. Who are you even talking about?");
+        console.println("%s is not in your party. Who are you even talking about?", name);
         return selectUserToPlay();
     }
 
@@ -122,13 +203,21 @@ public class Casino {
         }
     }
 
+    void updatePlayerWallet(Integer playerNetGain, Player playerToFind) {
+        for (Player player: playerList){
+            if (player.equals(playerToFind)){
+                player.updateWallet(playerNetGain);
+            }
+        }
+    }
+
 
     public void checkHouse() {
         console.println("The house has made %d tonight", houseBalance);
     }
 
     public void goToATM() {
-        console.println("Welcome to the HRC ATM!");
+        printATM();
         String name = console.getStringInput("Who needs to withdraw money?");
         boolean withdrawFlag = false;
         for(Player player : playerList){
@@ -146,6 +235,21 @@ public class Casino {
         else {
             console.println("Thank you for your business!");
         }
+    }
+
+    private void printATM() {
+        console.println("\n" +
+                " .----------------.  .----------------.  .----------------. \n" +
+                "| .--------------. || .--------------. || .--------------. |\n" +
+                "| |      __      | || |  _________   | || | ____    ____ | |\n" +
+                "| |     /  \\     | || | |  _   _  |  | || ||_   \\  /   _|| |\n" +
+                "| |    / /\\ \\    | || | |_/ | | \\_|  | || |  |   \\/   |  | |\n" +
+                "| |   / ____ \\   | || |     | |      | || |  | |\\  /| |  | |\n" +
+                "| | _/ /    \\ \\_ | || |    _| |_     | || | _| |_\\/_| |_ | |\n" +
+                "| ||____|  |____|| || |   |_____|    | || ||_____||_____|| |\n" +
+                "| |              | || |              | || |              | |\n" +
+                "| '--------------' || '--------------' || '--------------' |\n" +
+                " '----------------'  '----------------'  '----------------' \n");
     }
 
 
@@ -166,7 +270,7 @@ public class Casino {
     Integer getNextAction() {
         String toShow = "Please Select From The Following Options \n" +
                 "(1) GoFish (2) BlackJack (3) Craps (4) Cho-Han\n" +
-                "(5) ATM (6) Check House (7) Add Player (8) Exit";
+                "(5) ATM (6) Check House (7) Add Player (8) Check Wallet (9) Exit";
         return console.getIntegerInput(toShow);
     }
 
@@ -194,8 +298,14 @@ public class Casino {
 
     public void welcomePlayers() {
         String welcome = "Welcome ";
-        for (Player player : playerList){
-            welcome += player.getName() + " ";
+        for (int i = 0; i < playerList.size() - 1; i++){
+            welcome += playerList.get(i).getName() + " ";
+        }
+        if (playerList.size() > 1){
+            welcome += "and " + playerList.get(playerList.size()-1).getName() + "!";
+        }
+        else{
+            welcome += playerList.get(0).getName() + "!";
         }
         console.println(welcome);
     }

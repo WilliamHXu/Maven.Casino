@@ -206,6 +206,12 @@ public class BlackJackGame implements Game {
 
     }
 
+    public Integer getPlayerNetGain(){
+        return this.player.getPlayerNetGainLoss();
+    }
 
+    public Integer getHouseCommission(){
+        return this.dealer.getPlayerNetGainLoss();
+    }
 
 }
