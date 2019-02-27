@@ -1,8 +1,12 @@
 package io.zipcoder.casino;
 
 
+import io.zipcoder.casino.BlackJack.BlackJackGame;
 import io.zipcoder.casino.ChoHan.ChoHanGame;
 import io.zipcoder.casino.Craps.CrapsGame;
+
+import io.zipcoder.casino.GoFish.GoFishGame;
+
 import io.zipcoder.casino.Interfaces.Game;
 import io.zipcoder.casino.utilities.Console;
 import io.zipcoder.casino.utilities.Player;
@@ -54,28 +58,28 @@ public class Casino {
     }
 
     private void performNextAction(Integer nextAction) {
-//        if(nextAction.equals(1)){
-//            // Start GoFish
-//            Game goFish = new GoFishGame(playerList);
-//            goFish.start();
-//        }
-//        else if(nextAction.equals(2)){
-//            // Start BlackJack
-//            Game blackJack = new BlackJackGame(playerList);
-//            blackJack.start();
-//            // End sequence updates
-//
-//        }
-        if(nextAction.equals(3)){
-           // Start Craps
+        if(nextAction.equals(1)){
+            Player player = selectUserToPlay();
+            // Start GoFish
+            GoFishGame goFish = new GoFishGame(player);
+            goFish.start();
+        }
+        else if(nextAction.equals(2)){
+            Player player = selectUserToPlay();
+            // Start BlackJack
+            BlackJackGame blackJack = new BlackJackGame(player);
+            blackJack.start();
+            // End sequence updates
+
+        }
+        else if(nextAction.equals(3)){
+            // Start Craps
             Game craps = new CrapsGame(playerList);
             craps.start();
             // End sequence updates
-            updatePlayersWallets(((CrapsGame) craps).getPlayerNetGain());
-            updateHouseBalance(((CrapsGame) craps).getHouseCommission());
 
         }
-        if(nextAction.equals(4)){
+        else if(nextAction.equals(4)){
             // Start ChoHan
             ChoHanGame choHan = new ChoHanGame(playerList);
             choHan.start();
@@ -93,8 +97,19 @@ public class Casino {
             addPlayer();
         }
         else{
-            console.println("Either enter a valid option or get off the floor.");
+            console.println("Either do something or get off the floor. We ... ugh I mean you got money to make!");
         }
+    }
+
+    Player selectUserToPlay() {
+        String name = console.getStringInput("Who is the lucky one who gets to play?");
+        for(Player player : playerList){
+            if(player.getName().toUpperCase().equals(name.toUpperCase())){
+                return player;
+            }
+        }
+        console.println("%s is not in your party. Who are you even talking about?");
+        return selectUserToPlay();
     }
 
     void updateHouseBalance(Integer houseCommission) {
