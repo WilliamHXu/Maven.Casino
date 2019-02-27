@@ -119,6 +119,7 @@ public class BlackJackGame implements Game {
             console.println("Dealer has BlackJack! You lose!");
 
         } else if(dealerSum > 21 ){
+            player.updateWallet(totalMoney * 2);
             console.println("Dealer bust! You Win!");
         } else if(playerSum > 21 ){
             console.println("You lose this round, bust!");
