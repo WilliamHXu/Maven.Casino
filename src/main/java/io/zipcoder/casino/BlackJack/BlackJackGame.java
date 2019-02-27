@@ -111,7 +111,7 @@ public class BlackJackGame implements Game {
 
 
         } else if(playerSum == 21){
-            player.updateWallet(totalMoney * 2)
+            player.updateWallet(totalMoney * 2);
             console.println("You have BlackJack! You Win!");
 
 
