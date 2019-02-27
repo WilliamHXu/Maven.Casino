@@ -8,7 +8,7 @@ import io.zipcoder.casino.utilities.Player;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BlackJackTests {
+public class BlackJackTest {
 
 
 
@@ -22,6 +22,8 @@ public class BlackJackTests {
         // When
         Player player = new Player();
         BlackJackPlayer blackJackPlayer = new BlackJackPlayer(player);
+        blackJackPlayer.addCard(card1);
+        blackJackPlayer.addCard(card2);
 
         // Then
         int expected = 10;
