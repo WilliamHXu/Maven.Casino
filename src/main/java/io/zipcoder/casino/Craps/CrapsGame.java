@@ -33,6 +33,10 @@ public class CrapsGame implements Game {
         }
     }
 
+    public CrapsGame(Player player){
+        this.crapsPlayer = new CrapsPlayer(player);
+    }
+
 
     public void start() {
 
@@ -319,13 +323,17 @@ public class CrapsGame implements Game {
     }
 
 
-    public ArrayList<Integer> getPlayerNetGain() {
+    public ArrayList<Integer> getPlayersNetGain() {
         ArrayList<Integer> playsrsNetGain = new ArrayList<Integer>();
         for (CrapsPlayer player : playerListCraps) {
             Integer store = player.getNetGainLossPlayerCraps();
             playsrsNetGain.add(store);
         }
         return playsrsNetGain;
+    }
+
+    public Integer getPlayerNetGain(){
+        return crapsPlayer.getNetGainLossPlayerCraps();
     }
 
     public Integer getHouseCommisionAmt(Integer gameBetAmt) {
